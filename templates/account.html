@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products | RedStore</title>
+    <link rel="stylesheet" href="{% static 'style/style.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    {% block header%}
+    {% include 'header.html' %}
+    {% endblock header%}
+    
+
+    <!-- Account Page -->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    {% if messages %}
+                    <div class="message-container">
+                        {% for message in messages %}
+                        
+                    
+                        {{message}}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <img src="{% static 'images/image1.png'%}" width="100%">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="Indicator">
+                        </div>
+                        <form id="LoginForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text"  required placeholder="Username" name="username">
+                            <input type="password" required placeholder="Password" name="password">
+                            <button type="submit" class="btn" name="login">Login</button>
+                            <a href="">Forget Password</a>
+                        </form>
+
+                        <form id="RegForm" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="text" name="username" placeholder="Username" required maxlength="8" minlength="3">
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="password" name="password" placeholder="Password" required minlength="6" maxlength="10">
+                            <input type="text" name="address" placeholder="address" required maxlength="8" minlength="3">
+                            <input type="text" name="phone number" placeholder="Phone number" required maxlength="8" minlength="3">
+                            <button type="submit" class="btn" name="register">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    {% block footer %}
+    {% include 'footer.html' %}
+    {% endblock footer %}
+
+    <!-- javascript -->
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px"
+            }
+            else {
+                MenuItems.style.maxHeight = "0px"
+            }
+        }
+    </script>
+
+    <!-- Toggle Form -->
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("Indicator");
+        function register() {
+            RegForm.style.transform = "translatex(0px)";
+            LoginForm.style.transform = "translatex(0px)";
+            Indicator.style.transform = "translateX(100px)";
+
+        }
+        function login() {
+            RegForm.style.transform = "translatex(300px)";
+            LoginForm.style.transform = "translatex(300px)";
+            Indicator.style.transform = "translate(0px)";
+
+        }
+    </script>
+{% if register %}
+<script>
+    register()
+</script>
+{% else %}
+<script>
+    login()
+</script>
+{% endif %}
+</body>
+
+</html>
