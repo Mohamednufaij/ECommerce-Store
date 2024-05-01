@@ -24,7 +24,7 @@
     <div class="row">
         {% for product in featured_products %}
         <div class="col-4">
-            <a href="{% url 'product_details' %}"><img src="{%static 'images/product-1.jpg'%}"></a>
+            <a href="{% url 'product_details' id=product.id %}"><img src="{%static 'images/product-1.jpg'%}"></a>
             <h4>Red Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
@@ -42,7 +42,7 @@
 
         {% for product in latest_products %}
         <div class="col-4">
-            <a href="{% url 'product_details' %}"><img src="{%static 'images/product-1.jpg'%}"></a>
+            <a href="{% url 'product_details' id=product.id %}"><img src="{%static 'images/product-1.jpg'%}"></a>
             <h4>Red Printed T-Shirt</h4>
             <div class="rating">
                 <i class="fa fa-star"></i>

@@ -419,10 +419,12 @@ th:last-child{
     display: inline-block;
 }
 .form-container form{
+    /* height: 500px; */
     max-width: 300px;
     padding: 0 20px;
     position: absolute;
     top: 130px;
+    /* margin-bottom: 90px; */
     transition: transform 1s;
 }
 form input{
