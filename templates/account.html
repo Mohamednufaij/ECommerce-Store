@@ -40,7 +40,7 @@
                             <span onclick="register()">Register</span>
                             <hr id="Indicator">
                         </div>
-                        <form id="LoginForm" method="post" enctype="multipart/form-data">
+                        <form id="LoginForm" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="text"  required placeholder="Username" name="username">
                             <input type="password" required placeholder="Password" name="password">
@@ -48,13 +48,13 @@
                             <a href="">Forget Password</a>
                         </form>
 
-                        <form id="RegForm" method="post" enctype="multipart/form-data">
+                        <form id="RegForm" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <input type="text" name="username" placeholder="Username" required maxlength="8" minlength="3">
                             <input type="email" name="email" placeholder="Email" required>
                             <input type="password" name="password" placeholder="Password" required minlength="6" maxlength="10">
-                            <input type="text" name="address" placeholder="address" required maxlength="8" minlength="3">
-                            <input type="text" name="phone number" placeholder="Phone number" required maxlength="8" minlength="3">
+                            <input type="text" name="address" placeholder="address" required maxlength="18" minlength="3">
+                            <input type="text" name="phone" placeholder="Phone number" required maxlength="10" minlength="10">
                             <button type="submit" class="btn" name="register">Register</button>
                         </form>
                     </div>

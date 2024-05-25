@@ -6,7 +6,7 @@ from . models import Customer
 # Create your views here.
 def sign_out(request):
     logout(request)
-    return redirect('home')
+    return redirect('Home')
 def account(request):
     context={}
     if request.POST and 'register' in request.POST:
@@ -18,6 +18,9 @@ def account(request):
             email=request.POST.get('email')
             address=request.POST.get('address')
             phone=request.POST.get('phone')
+            print('*'*100)
+            print(username,password,email,address,phone)
+            print('*'*100)
             #create user account
             user=User.objects.create_user(
                 username=username,
