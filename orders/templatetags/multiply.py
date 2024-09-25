@@ -2,6 +2,6 @@ from django import template
 
 register = template.Library()
 
-@register.simple_tag(name='multiply')
-def multiply(a,b):
-    return a*b
+@register.filter
+def multiply(value, arg):
+    return value * arg

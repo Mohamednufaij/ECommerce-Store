@@ -4,6 +4,7 @@ from products.models import Product
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 def show_cart(request):
     user=request.user
     customer=user.customer_profile

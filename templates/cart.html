@@ -47,7 +47,8 @@
                     </div>
                 </td>
                 <td><input type="number" disabled value="1" value="{{cart_item.quantity}}"></td>
-                <td>${% multiply cart_item.product.price * cart_item.quantity %}</td>
+                
+                <td>${{ cart_item.product.price|multiply:cart_item.quantity }}</td>
             </tr>
             <tr>
                 {% endfor %}
@@ -92,7 +93,7 @@
                     <td colspan="2">
 
                     </td>
-                    <form action="{% url 'checkout %}" enctype="multipart/form-data" method="post">
+                    <form action="{% url 'checkout' %}" enctype="multipart/form-data" method="post">
                     <td><button id="Confirm" type="submit">Confirm Order</button>
                         <input type="hidden" name="total" value="{% total cart%}">
                     {% csrf_token %}
