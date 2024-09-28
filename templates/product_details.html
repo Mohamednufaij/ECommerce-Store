@@ -41,7 +41,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="{{product.id}}" name="product_id" >
                 <input type="number" name="quantity" value="1">
-                <button type="button" class="btn">Add to cart</button>
+                <button type="submit" class="btn">Add to cart</button>
             </form>
 
                 <h3>Product Details <i class="fa fa-indent"></i></h3>

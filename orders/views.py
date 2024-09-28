@@ -42,27 +42,35 @@ def checkout_cart(request):
 @login_required(login_url='account')
 def add_cart(request):
     if request.POST:
-        user=request.user
-        customer=user.customer_profile
-        quantity=int(request.POST.get('quantity'))
-        product_id=request.POST.get('product_id')
-        cart_obj,created=Order.objects.get_or_create(
+        user = request.user
+        customer = user.customer_profile
+        quantity = int(request.POST.get('quantity'))
+        product_id = request.POST.get('product_id')
+
+        # Fetch or create the cart (Order) for the customer
+        cart_obj, created = Order.objects.get_or_create(
             owner=customer,
             order_status=Order.CART_STAGE
-                            )
-        product=Product.objects.get(pk=product_id)
-        Ordered_items,created=Ordered_item.objects.get_or_create(
-            product=product_id,
-            owner=cart_obj,
-            
         )
+
+        # Fetch the product
+        product = Product.objects.get(pk=product_id)
+
+        # Add or update the Ordered_item
+        Ordered_items, created = Ordered_item.objects.get_or_create(
+            product=product,
+            orders=cart_obj,  # Correct field name 'orders'
+        )
+
         if created:
-            Ordered_items.quantity=quantity
+            Ordered_items.quantity = quantity
             Ordered_items.save()
         else:
-            Ordered_items.quantity=Ordered_items.quantity+quantity
+            Ordered_items.quantity += quantity
             Ordered_items.save()
+
         return redirect('cart')
+
 def remove_items(request,pk):
 
     item=Ordered_item.objects.get(pk=pk)
@@ -77,9 +85,24 @@ def view_orders(request):
     
     return render(request,'cart.html')
 @login_required(login_url='account')
+# def show_orders(request):
+#     user=request.user
+#     customer=user.customer_profile
+#     all_orders=Order.objects.filter(owner=customer).exclude(order_status=Order.CART_STAGE)
+#     context={'order':all_orders}
+#     return render(request,'orders.html',context)
+# def show_orders(request):
+#     user = request.user
+
+#     # Check if the user has a customer profile before proceeding
+#     if hasattr(user, 'customer_profile'):
+#         customer = user.customer_profile
+#         all_orders = Order.objects.filter(owner=customer).exclude(order_status=Order.CART_STAGE)
+#         context = {'order': all_orders}
+#     else:
+#         # Handle the case where there's no customer profile
+#         context = {'order': None}
+
+#     return render(request, 'orders.html', context)
 def show_orders(request):
-    user=request.user
-    customer=user.customer_profile
-    all_orders=Order.objects.filter(owner=customer).exclude(order_status=Order.CART_STAGE)
-    context={'order':all_orders}
-    return render(request,'orders.html',context)
+    return render(request, 'orders.html', {})

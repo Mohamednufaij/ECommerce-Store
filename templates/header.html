@@ -8,7 +8,7 @@
             <nav>
                 <ul id="MenuItems">
                      <li><a href="{% url 'index' %}">Home</a></li>
-                        <!-- here there is a chance of error becpuse i used home for most areas  -->
+                        
                     <li><a href="{% url 'product' %}">Products</a></li>
                     <!--  -->
                     <!-- <li><a href="">About</a></li>
@@ -17,7 +17,7 @@
                     
                     <li><a href="{% url 'account' %}">Account</a></li>
                     {% else %}
-                    <li><a href="{% url 'cart' %}">Orders</a></li>
+                    <li><a href="{% url 'orders' %}">Orders</a></li>
                     <li><a href="{% url 'logout' %}">logout</a></li>
                     {% endif %}
                 </ul>
@@ -25,7 +25,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'cart' %}"><img src="{%static 'images/cart.png'%}" width="30px" height="30px"></a>
             {% endif %}
-            <img src="{% static '/imagesmenu.png'%}" class="menu-icon" onclick="menutoggle()">
+            <img src="{% static 'images/menu.png'%}" class="menu-icon" onclick="menutoggle()">
         </div>
        
     </div>

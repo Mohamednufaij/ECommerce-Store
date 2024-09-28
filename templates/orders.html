@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load getstatus %}
+{% load get_status %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
 </head>
 
 <body>
+    
     {% block header%}
     {% include 'header.html' %}
     {% endblock header%}
@@ -40,7 +42,7 @@
                 <td>{{order.id}}</td>
                 <td>{{order.created_at}}</td>
                 <td>{{order.total_price}}</td>
-                <td>{% getstatus order.order_status %}</td>
+                <td>{% get_status order.order_status %}</td>
                 
             </tr>
             {% endfor %}
