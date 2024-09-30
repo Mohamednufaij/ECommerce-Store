@@ -46,7 +46,8 @@ def checkout_cart(request):
     except Exception as e:
         error_message="order not proccessed"
         messages.error(request,error_message)
-    return redirect ('cart')
+    return redirect('show_orders')  # Assuming 'show_orders' is the URL name for the orders view
+
 @login_required(login_url='account')
 def add_cart(request):
     if request.POST:

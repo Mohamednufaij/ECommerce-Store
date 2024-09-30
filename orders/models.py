@@ -56,6 +56,7 @@ class Order(models.Model):
     delete_status = models.IntegerField(choices=DELETE_CHOICES, default=LIVE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    total_price = models.FloatField(default=0.0)  # Add this line
 
     def __str__(self):
         return "order-{}-{}".format(self.id, self.owner.name)  # Correct indentation
