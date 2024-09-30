@@ -30,6 +30,10 @@
 from django.db import models
 from customers.models import Customer
 from products.models import Product
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from customers.models import Customer
 
 class Order(models.Model):
     LIVE = 1
@@ -63,3 +67,13 @@ class Ordered_item(models.Model):
 
     def __str__(self):
         return f"Ordered item - {self.id} - {self.product.name}"  # Optional, for better representation
+
+
+@receiver(post_save, sender=User)
+def create_customer_profile(sender, instance, created, **kwargs):
+    if created:
+        Customer.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_customer_profile(sender, instance, **kwargs):
+    instance.customer_profile.save()
