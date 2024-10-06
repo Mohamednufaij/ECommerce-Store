@@ -517,6 +517,8 @@ form a{
     background-color: black;
     border: white;
     color: white;
-    border-radius:50% ;
+    /* border-radius:50% ; */
+    height: 20px;
+    width: 80px;
 
 }
